@@ -9,6 +9,14 @@ app.use(express.urlencoded({extended: true}));
 app.get("/posts",(req,res)=>{
     res.render("index.ejs",{posts});
 });
+app.get("/posts/new",(req,res)=>{
+    res.render("new.ejs");
+});
+app.post("/posts",(req,res)=>{
+    let{username,content}=req.body;
+    posts.push({username,content});
+    res.redirect("/posts")
+});
 let posts = [{username: "rooney",content:"I love coding"},
     {username: "tuffy",content:"I love reading"},];
 app.listen(port,()=>{
