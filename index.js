@@ -17,8 +17,16 @@ app.post("/posts",(req,res)=>{
     posts.push({username,content});
     res.redirect("/posts")
 });
-let posts = [{username: "rooney",content:"I love coding"},
-    {username: "tuffy",content:"I love reading"},];
+let posts = [{id:"1", username: "rooney",content:"I love coding"},
+    {id:"2" ,username: "tuffy",content:"I love reading"},];
+
+app.get("/posts/:id",(req,res)=>{
+    let{id}=req.params;
+  let post=posts.find((p)=>id === p.id);
+
+    res.render("show.ejs",{post});
+});
+
 app.listen(port,()=>{
     console.log("listening to port 8080");
 });
